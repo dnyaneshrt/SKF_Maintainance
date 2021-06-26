@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">SKF Maintenance</string>
+
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="username">Username</string>
+    <string name="designed_and_developed_by">Designed and developed by</string>
+
+    <string name="please_enter_the_user_name">Please enter the Username</string>
+    <string name="please_enter_the_password">Please enter the Password</string>
+
+    <string name="user_is_not_logged_in">User not logged in</string>
+    <string name="logout_successfully">Logout Successfully</string>
+
+    <string name="qr_code_scan">QR Code Scan</string>
+    <string name="enter_the_qr_code">Enter the QR Code</string>
+    <string name="get">Get</string>
+    <string name="or">Or</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+
+    <string name="please_enter_qr_code">Please enter QR Code</string>
+    <string name="data_not_coming">Data not coming</string>
+    <string name="send_user_details">Send user details</string>
+    <string name="in_process">In Process</string>
+
+    <string name="customer">Customer : </string>
+    <string name="spindle">Spindle : </string>
+    <string name="issue">Issue : </string>
+    <string name="stage_completed">Stage Completed</string>
+    <string name="pending">Pending</string>
+    <string name="completed">Completed</string>
+    <string name="primary_sopstage">Primary SOP Stage</string>
+</resources>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.QRCodeScanActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_header"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardElevation="@dimen/dimen_8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/iv_back_arrow"
+                android:layout_width="@dimen/dimen_30sp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_10sp"
+                android:layout_marginLeft="@dimen/dimen_10sp"
+                android:src="@drawable/ic_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_12sp"
+                android:layout_marginLeft="@dimen/dimen_12sp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/qr_code_scan"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/dimen_20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_back_arrow"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/et_qr_code"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10sp"
+        android:background="@drawable/background_rect_white"
+        android:hint="@string/enter_the_qr_code"
+        android:padding="@dimen/dimen_10sp"
+        android:singleLine="true"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorBlack"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_get_qr_code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_header" />
+
+    <TextView
+        android:id="@+id/tv_get_qr_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10sp"
+        android:layout_marginEnd="@dimen/dimen_10sp"
+        android:layout_marginRight="@dimen/dimen_10sp"
+        android:background="@color/colorGrey"
+        android:gravity="center"
+        android:padding="@dimen/dimen_10sp"
+        android:text="@string/get"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_header" />
+
+    <TextView
+        android:id="@+id/tv_or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_8sp"
+        android:gravity="center"
+        android:padding="@dimen/dimen_10sp"
+        android:text="@string/or"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/dimen_20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_qr_code" />
+
+    <Button
+        android:id="@+id/btn_scan_qr_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrey"
+        android:padding="@dimen/dimen_10sp"
+        android:text="@string/scan_qr_code"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_or" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/dimen_50sp"
+        android:layout_height="@dimen/dimen_50sp"
+        android:indeterminateTint="@color/colorGreen"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_scan_qr_code" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_user_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10sp"
+        android:background="@color/colorWhite"
+        android:visibility="gone"
+        app:cardElevation="@dimen/dimen_8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_scan_qr_code">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dimen_10sp">
+
+            <!--
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_spindleServicceRequestId"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/btn_scan_qr_code"
+    android:layout_marginTop="@dimen/dimen_30sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <TextView
+        android:id="@+id/spindleServicceRequestId"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/dimen_10sp"
+        android:layout_marginLeft="@dimen/dimen_10sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:text="Spindle Service Request Id"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_spindleServicceRequestId"/>
+
+    <TextView
+        android:id="@+id/tv_spindleServicceRequestId"
+        android:layout_width="0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/dimen_10sp"
+        android:layout_marginLeft="@dimen/dimen_10sp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintStart_toEndOf="@+id/spindleServicceRequestId"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_employeeId"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/cl_spindleServicceRequestId"
+    android:layout_marginTop="@dimen/dimen_10sp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <TextView
+        android:id="@+id/employeeId"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/dimen_10sp"
+        android:layout_marginLeft="@dimen/dimen_10sp"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:text="Employee Id"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_employeeId"/>
+
+    <TextView
+        android:id="@+id/tv_employeeId"
+        android:layout_width="0sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/dimen_10sp"
+        android:layout_marginLeft="@dimen/dimen_10sp"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintStart_toEndOf="@+id/employeeId"
+        android:layout_height="wrap_content" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_sscNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_50sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_scan_qr_code">
+
+                <TextView
+                    android:id="@+id/sscNo"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="SSC No"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_sscNo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_sscNo"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sscNo"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_spindleBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_sscNo">
+
+                <TextView
+                    android:id="@+id/spindleBrand"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="Spindle Brand"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_spindleBrand"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_spindleBrand"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/spindleBrand"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_machineBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_spindleBrand">
+
+                <TextView
+                    android:id="@+id/machineBrand"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="Machine Brand"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_machineBrand"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_machineBrand"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/machineBrand"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_serialNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_machineBrand">
+
+                <TextView
+                    android:id="@+id/serialNo"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="Serial No"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_serialNo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_serialNo"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/serialNo"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_spindleModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_serialNo">
+
+                <TextView
+                    android:id="@+id/spindleModel"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="Spindle Model"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_spindleModel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_spindleModel"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/spindleModel"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_machineModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_spindleModel">
+
+                <TextView
+                    android:id="@+id/machineModel"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="Machine Model"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_machineModel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_machineModel"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/machineModel"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_spindleRequestedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_machineModel">
+
+                <TextView
+                    android:id="@+id/spindleRequestedDate"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:text="Request Date"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_spindleRequestedDate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_spindleRequestedDate"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_10sp"
+                    android:layout_marginLeft="@dimen/dimen_10sp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/dimen_18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/spindleRequestedDate"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_send_user_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrey"
+        android:text="@string/send_user_details"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/dimen_30sp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginStart="@dimen/dimen_10sp"
+        android:layout_marginEnd="@dimen/dimen_10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_user_details" />
+</androidx.constraintlayout.widget.ConstraintLayout>
